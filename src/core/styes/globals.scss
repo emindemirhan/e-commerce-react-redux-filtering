@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./reset.scss";
+@import "./fonts.scss";
+@import "./variables.scss";
+@import "./mixins.scss";
+
+* {
+  @apply box-border;
+}
+
+body {
+  @apply h-screen w-screen;
+  #root {
+    @apply h-full w-full flex flex-col;
+  }
+  background: #f7fafc;
+  font-family: $fontFamily;
+}
+
+header {
+  @apply bg-white border bg-black border-gray-200;
+}
+
+main {
+  @apply flex flex-1 mt-6 w-screen;
+}
+
+._container {
+  @apply container mx-auto px-4;
+  max-width: 1024px;
+}
+
+button,
+a {
+  @apply scale-100;
+  &:active {
+    @apply scale-95;
+  }
+}

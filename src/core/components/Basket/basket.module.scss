@@ -1,0 +1,109 @@
+.basket {
+  @apply relative;
+
+  &Btn {
+    @apply flex flex-row relative border border-white text-white rounded-md p-3;
+
+    &Count {
+      @apply inline-flex items-center border-l border-white ml-2 pl-2 justify-center;
+    }
+
+    &:hover {
+      @apply border-blue-600 text-blue-600 bg-white;
+
+      * {
+        @apply border-blue-600 text-blue-600;
+      }
+    }
+
+    &.active {
+      @apply bg-blue-600 border-blue-600 text-white;
+
+      * {
+        @apply border-white;
+      }
+
+      &:hover {
+        @apply border-blue-600 text-white;
+        * {
+          @apply border-blue-600 text-white;
+        }
+      }
+    }
+  }
+
+  &Content {
+    @apply absolute flex z-50 bg-white shadow top-11 w-80 overflow-auto origin-top right-0 p-2 border rounded-lg hidden;
+    min-height: fit-content;
+    max-height: 80vh;
+
+    @media (max-width: 1024px) {
+      max-width: calc(100vw - 1.5rem);
+    }
+
+    &Wrap {
+      @apply flex items-center justify-center min-w-full min-h-full;
+
+      &Info {
+        @apply flex flex-col gap-4 items-center py-5;
+      }
+    }
+
+    &.open {
+      @apply block;
+    }
+  }
+
+  &List {
+    @apply flex flex-col gap-y-2;
+
+    &Item {
+      @apply flex flex-row gap-2;
+
+      &Left {
+        @apply inline-block h-auto w-fit;
+
+        &Img {
+          @apply inline-flex items-center justify-center border border-gray-200 rounded overflow-hidden h-full w-20;
+
+          img {
+            @apply w-full h-auto;
+          }
+        }
+      }
+
+      &Right {
+        @apply flex flex-1 gap-1;
+
+        &Info {
+          @apply flex flex-col gap-1 items-start justify-center;
+
+          a {
+            @apply w-full border-b border-gray-100;
+
+            &:hover {
+              @apply border-gray-300;
+            }
+          }
+        }
+
+        &Count {
+          @apply flex flex-col items-center justify-center gap-1;
+
+          &Btn,
+          input[type="text"] {
+            @apply border text-xs py-1 text-center text-gray-500 border-gray-300 bg-gray-50 rounded-md px-2 outline-none inline-block w-10;
+          }
+
+          &Btn {
+            @apply flex items-center justify-center border-gray-100;
+          }
+        }
+      }
+
+      & + & {
+        @apply border-t pt-2 border-gray-200;
+      }
+    }
+  }
+}

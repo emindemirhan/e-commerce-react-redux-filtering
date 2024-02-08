@@ -1,0 +1,39 @@
+.input,
+select {
+  @apply border border-gray-300 text-gray-700 rounded-md outline-0 py-2 text-sm placeholder:text-gray-300;
+  line-height: 20px;
+
+  &:focus {
+    @apply border-blue-500;
+  }
+}
+
+.input {
+  @apply px-3;
+}
+
+.debounceInput {
+  @apply relative;
+
+  input {
+    @apply pr-7;
+    min-width: 230px;
+
+    &:focus {
+      &~.icon {
+        @apply text-blue-500;
+      }
+    }
+  }
+
+  .icon {
+    @apply absolute right-2 top-1/2 -translate-y-1/2 text-gray-400;
+  }
+
+  @media (max-width: 1024px) {
+    @apply min-w-full;
+    input {
+      @apply min-w-full;
+    }
+  }
+}

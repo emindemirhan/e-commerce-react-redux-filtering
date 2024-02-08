@@ -1,0 +1,186 @@
+.products {
+  @apply relative flex flex-row flex-1 gap-6;
+
+  section {
+  }
+
+  &Filtering {
+    @apply h-fit pb-7 fixed rounded-md px-5  lg:sticky top-0 overflow-hidden lg:overflow-auto transition-all;
+    background: #ffffff;
+    min-width: 280px;
+
+    .mobileBtn {
+      &Cont {
+        @apply pb-2 pr-2 flex lg:hidden justify-end;
+        padding-top: 0.9rem;
+      }
+
+      @apply block;
+
+      button {
+        @apply p-2 border border-gray-300 text-gray-400;
+
+        svg {
+          @apply text-gray-500;
+        }
+      }
+    }
+
+    .dropDownBodyContainer {
+      @apply flex items-center justify-start gap-2;
+      line-height: 20px;
+
+      * {
+        line-height: 20px;
+      }
+    }
+
+    &DropdownItem {
+      @apply relative flex cursor-pointer;
+
+      &:has(input[type="number"]) {
+        @apply inline-flex;
+        min-width: 50px;
+      }
+
+      input {
+        &[type="radio"],
+        &[type="checkbox"] {
+          @apply hidden;
+        }
+
+        &[type="radio"] {
+          & ~ * {
+            @apply capitalize;
+          }
+
+          &:checked ~ * {
+            @apply font-semibold text-blue-500;
+          }
+        }
+
+        &[type="checkbox"] {
+          & ~ .checkmark {
+            @apply absolute left-0 top-1/2 -translate-y-1/2 bg-gray-400;
+            width: 10px;
+            height: 10px;
+
+            &:after {
+              content: "";
+              position: absolute;
+              display: none;
+              left: 9px;
+              top: 5px;
+              width: 5px;
+              height: 10px;
+              border: solid white;
+              border-width: 0 3px 3px 0;
+              -webkit-transform: rotate(45deg);
+              -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+            }
+          }
+
+          & ~ p {
+            @apply pl-4;
+          }
+
+          &:checked ~ .checkmark {
+            @apply font-semibold bg-blue-500;
+
+            &:after {
+              @apply block;
+            }
+          }
+        }
+
+        &[type="number"] {
+          @apply text-center border text-sm py-1 text-gray-500 border-gray-300 bg-gray-100 rounded-md px-2 outline-none inline-block w-12;
+
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            @apply appearance-none;
+          }
+        }
+      }
+
+      & + & {
+        @apply mt-1;
+      }
+    }
+
+    .dropdownFilter {
+      @apply opacity-0 lg:opacity-100 pointer-events-none lg:pointer-events-auto;
+    }
+
+    @media (max-width: 1024px) {
+      @apply -left-4 pb-2 pl-4 h-screen border-0 border-b-2;
+      transform: translateX(calc(-100%));
+      z-index: 999;
+
+      &.open {
+        @apply -left-3 shadow translate-x-0;
+
+        .dropdownFilter {
+          @apply opacity-100 pointer-events-auto;
+        }
+      }
+    }
+  }
+
+  &Body {
+    @apply flex flex-col flex-1 gap-5;
+
+    &Headline {
+      @apply flex flex-col lg:flex-row items-start lg:items-center justify-between h-fit lg:h-14 p-3 bg-white border border-gray-300 border rounded-lg gap-2;
+    }
+
+    &List {
+      @apply flex flex-wrap gap-4 pb-6;
+
+      &ShowMore {
+        @apply flex pt-3 block w-full;
+
+        &Btn {
+          @apply flex m-auto p-2 bg-blue-600 text-white rounded-md border border-blue-600;
+        }
+      }
+
+      &Item {
+        @apply border bg-white border-gray-300 border rounded-md overflow-hidden;
+        width: calc((100% - 2rem) / 3);
+
+        @media (max-width: 768px) {
+          width: calc((100% - 1rem) / 2);
+        }
+
+        @media (max-width: 428px) {
+          width: 100%;
+        }
+
+        &ImgTop {
+          @apply relative block overflow-hidden border-b border-gray-200;
+          height: 200px;
+
+          img {
+            @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-fit;
+            height: 100%;
+            width: auto;
+          }
+        }
+
+        &Body {
+          @apply flex flex-col p-3;
+
+          .rating {
+            @apply flex flex-row items-center justify-start gap-2 capitalize;
+
+            &Stars {
+              @apply flex flex-row;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@import "../../styes/mixins.scss";
+
+.text {
+    @apply inline-block;
+    @include textProperties();   
+}

@@ -1,0 +1,58 @@
+.dropdown {
+    @apply relative border-t border-gray-300;
+
+    &Heading {
+        @apply block py-3 cursor-pointer;
+
+        &Inspector {
+            @apply absolute inline-flex items-center justify-center right-0 top-3;
+            &:after {
+                @apply font-normal;
+                content: "+";
+            }
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width : 1024px) {
+            @apply pl-2;
+        }
+    }
+
+    &Body {
+        @apply hidden pb-7 overflow-hidden;
+        max-height: 9999px;
+        
+        &.more {
+            max-height: 88px;
+        }
+
+        @media (max-width : 1024px) {
+            @apply pl-2;
+        }
+    }
+
+    &Footer {
+        @apply hidden flex-row items-center justify-center mb-2; 
+        button {
+            @apply flex flex-row m-auto;
+        }
+    }
+
+    input[name=dropdownControl] {
+        @apply hidden;
+
+        &:checked {
+            &~.dropdownBody,
+            &~.dropdownFooter {
+                @apply block;
+            }
+            &~.dropdownHeadingInspector {
+                @apply block;
+                &::after{
+                    content: "-";
+                }
+            }
+        }
+    }
+}
