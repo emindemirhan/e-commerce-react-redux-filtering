@@ -1,11 +1,11 @@
-function App(): JSX.Element {
+import { Routes, Route } from "react-router-dom";
+import Page404 from "./page404";
+
+function App() {
   return (
-    <div className="text-red-500">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
-      dolorem ex nemo eveniet magni error, alias possimus tempora velit numquam
-      odio ipsa officia recusandae eos voluptatem quas suscipit aspernatur
-      deleniti?
-    </div>
+    <Routes>
+      <Route path="*" element={<Page404 />} />
+    </Routes>
   );
 }
 
