@@ -14,12 +14,6 @@ import Alert from "../../../../Alert";
 
 const Item = ({ obj }: { obj: any }) => {
   const [{ id, thumbnail, rating, price, title, brand }] = useState<any>(obj);
-  const dispatch = useDispatch();
-
-  const handleAddToCart = () => {
-    // Assuming you have an action to add items to your basket:
-    dispatch({ type: "ADD_TO_BASKET", payload: obj });
-  };
 
   return (
     <li className={styles.productsBodyListItem}>
@@ -47,7 +41,6 @@ const Item = ({ obj }: { obj: any }) => {
             <Text tag="h4" fontWeight="medium">
               price: ${price}{" "}
             </Text>
-            <Button onClick={handleAddToCart}>Add to Cart</Button>
           </div>
         </div>
       </NavLink>
