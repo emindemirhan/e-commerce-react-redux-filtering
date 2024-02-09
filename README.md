@@ -1,47 +1,58 @@
-# Getting Started with Create React App
+# E-commerce with Filtering and Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
 
-## Available Scripts
+This project is a React-based e-commerce store with advanced filtering features implemented using TypeScript. The technology stack includes React.js, Redux, react-router-dom, and SASS libraries. The application follows a structured architecture, utilizing Redux for state management and react-router-dom for navigation. The MainLayout component encapsulates pages, ensuring a consistent layout with a header containing a shopping cart and a link to the product listings.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Product Listing:** Display a comprehensive list of products with images, names, prices, and other relevant details.
+- **Advanced Filtering:** Incorporate versatile filtering options, enabling users to:
+  - Perform a general search within the product name, brand, and description.
+  - Classify products by category.
+  - Filter products based on category, brand, scores, and price range.
+- **Dynamic Updates:** Experience real-time updates of product listings as users apply various filter options.
+- **Responsive Design:** Ensure a seamless and user-friendly design that adapts to both desktop and mobile devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Data Flow
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The application utilizes Redux for managing the state. The MainLayout component encompasses the header and pages, providing a structured flow of data and actions.
 
-### `npm test`
+## API Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Fetch all items
 
-### `npm run build`
+```http
+  GET / https://dummyjson.com/products/search
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Path             | Query | type     | Purpose of usage       |
+| :--------------- | :---- | :------- | :--------------------- |
+| /products        |       |          | All products fetched.  |
+| /products/search | `?q=` | `string` | All products searched. |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Fetch item detail
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```http
+  GET https://dummyjson.com/product/${id}
+```
 
-### `npm run eject`
+| Path     | Paramater | Query    | Purpose of usage            |
+| :------- | :-------- | :------- | :-------------------------- |
+| /product | `id`      | `string` | Product detail was fetched. |
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Route Structure
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The project consists of 3 pages:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- The main products page is accessible at [http://localhost:3000](http://localhost:3000).
+- Product details are available in the detail page under the path `detail/{id}`, for example, [http://localhost:3000/detail/1](http://localhost:3000/detail/1).
+- For invalid paths, there is a Page404 page that is displayed. This page does not include a button that directs users to the main directory.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# Mid-Level-Frontend-Developer-Assignment
+```jsx
+<Routes>
+  <Route path="/" element={<ProductsPage />} />
+  <Route path="/detail/:id" element={<ProductDetailPage />} />
+  <Route path="*" element={<Page404 />} />
+</Routes>
+```
