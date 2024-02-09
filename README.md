@@ -56,3 +56,27 @@ The project consists of 3 pages:
   <Route path="*" element={<Page404 />} />
 </Routes>
 ```
+
+### Installing
+
+1. Clone the repository to your local machine using the following command:
+
+```bash
+ https://github.com/emindemirhan/e-commerce-react-redux-filtering.git
+```
+
+2. Install the project dependencies:
+
+```bash
+  npm install
+```
+
+### Usage
+
+1. To run the application locally, use the following command:
+
+```bash
+  npm start
+```
+
+2. Open your web browser and go to `http://localhost:3000` to view the app.
